@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Mom+</title>
+    <link href="~/logo.png" rel="shortcut icon" type="~/Visual/Images/logo.png" />
+    @*CSS*@
+    @Styles.Render("~/Visual/Content/Template/CSS/font-awesome.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/bootstrap.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/style.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/settings.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/magnific-popup.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/owl.carousel.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/owl.transitions.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/animate.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/responsive.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/datepicker.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/color.css")
+    
+    @*JS*@
+    @Styles.Render("~/Visual/Content/Template/Scripts/common.js")
+    @Styles.Render("~/Visual/Content/Template/Scripts/util.js")
+    @Styles.Render("~/Visual/Content/Template/Scripts/stats.js")  
+   <script src="~/Visual/Content/Template/Scripts/jquery-1.11.0.min.js"></script>
+</head>
+<body class="single-page" style="background-image: url(/Visual/Images/slide-8.png); -webkit-background-size: cover;
+    /* for webkit*/
+    -moz-background-size: cover; /* mozilla*/
+    -o-background-size: cover; /* opera*/
+    background-size: cover; /* generic*/">
+
+    <div class="container">
+        <div class="logo">
+            <a href="#">
+                <img src="/Visual/Images/logo.png" alt="healthline" style="width: 100px;"></a></div>
+    </div>
+    <div class="navbar">
+        <div class="container">
+            <!--nav-collapse -->
+            <nav class="collapse navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li class="active">@Html.ActionLink("Home", "Homepage", "Homepage")</li>
+							<li class="has-ul"><span class="menu-sibling"></span>
+								<a href="#">Services</a>
+								<ul>
+                                    <li>
+                                        @Html.ActionLink("Inventory", "displayItem", "Inventory")
+                                        
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Homepage", "Homepage")#EventCalendar">Event Calender
+                                        </a>
+                                   </li>
+                               
+                               </ul>
+                            </li>
+                           <li class="has-ul"><span class="menu-sibling"></span>
+							<a href="#">Manage People</a>
+								<ul>
+                                    <li>@Html.ActionLink("Administrator", "AdminList", "ManagePeople")</li>
+									<li>@Html.ActionLink("Mother", "MotherList", "ManagePeople")</li>
+				                </ul>
+                            </li>
+                            <li class="has-ul"><span class="menu-sibling"></span>
+							      <a href = "#">Hi @RenderPage("~/Views/Homepage/printUsername.cshtml") </a>
+						    
+                                   <ul>
+                                  <li>@Html.ActionLink("Signout", "Signout", "Homepage")</li>
+                                 </ul>
+                            </li>
+                        </ul>
+
+					</nav>
+      
+        </div>
+    </div>
+
+    <div id="body">
+        <section>
+                @RenderBody()
+       </section>
+    </div>
+</body>
+</html>

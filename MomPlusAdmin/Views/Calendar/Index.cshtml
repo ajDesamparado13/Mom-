@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule</title>
+    <style>
+        body
+        {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+<br />
+   <div class="panel panel-success">
+      <div class="panel-heading">Event calendar</div>
+      <div class="panel-body">
+            
+    <div style="height: 900px; width: 100%; margin: 0 auto; display: inline-block;">
+        @Html.Raw(Model.Render())
+    </div>
+      
+      </div>
+    </div>
+
+</body>
+</html>

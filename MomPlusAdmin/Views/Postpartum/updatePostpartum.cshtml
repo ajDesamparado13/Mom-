@@ -1,0 +1,150 @@
+﻿@model MomPlusAdmin.Models.PostPartumModel  
+@{
+    ViewBag.Title = "updatePostpartum";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+@{
+    var postpartum = Model.postpartumID;
+    var motherID = Model.motherID;
+}
+<div id="services">
+    <!-- appointment section -->
+    <article class="section">
+			<div class="section-image" style="background-image:url(/Visual/Images/slide-8.png);">
+				<div class="container">
+					<!-- appointment-area -->
+					<div class="appointment-area">
+						<div class="row">
+							<div class="col-sm-10 col-md-6">
+								<!-- appointment-box -->
+								
+                                <div class="appointment-box">
+									      <div class="upper-section">
+                                                <header class="heading animated fadeInUp in" data-animation="fadeInUp" data-delay="0">
+                                                <h3>Update Postpartum Record</h3>
+                                                </header>
+                                           </div>
+                                   
+									<div class="text">
+                                    	<div class="appointment-form">
+                                        
+                                        @using (Html.BeginForm("updatePostpartum", "Postpartum", new { id = Model.postpartumID }, FormMethod.Post))
+                                        {
+                                            <h4 style = "color:Red;">@Html.ValidationSummary(true, message: "Snap. something went wrong.")</h4>
+                                                
+                                                @Html.HiddenFor(model => model.postpartumID)
+                                                @Html.HiddenFor(model => model.motherID)
+
+                                            <ul class="row">
+                                             <div class="col-sm-12" style = "text-align:center;">
+                                                <label>Date postpartum visits</label>
+                                             </div>
+                                             
+                                             <div class="form-inline">
+                                                    <div class="form-group">
+                                                       <li class="col-sm-12">
+                                                         <label>Within 24 hrs after delivery</label>
+                                                       @if (Model.within24hrs_after_delivery != null)
+                                                       {
+                                                       @Html.TextBoxFor(model => model.within24hrs_after_delivery, new { @class = "form-control" })
+                                                       @Html.ValidationMessageFor(model => model.within24hrs_after_delivery)
+                                                       }
+                                                       else
+                                                       {
+                                                       @Html.TextBoxFor(model => model.within24hrs_after_delivery, new { @type = "date", @class = "form-control" })
+                                                       
+                                                       }
+                                                        </li>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                       <li class="col-sm-12">
+                                                         <label>Within 24 hrs after delivery</label>
+
+                                                         @if (Model.within1week_after_delivery != null)
+                                                         {
+                                                       @Html.TextBoxFor(model => model.within1week_after_delivery, new { @class = "form-control" })
+                                                       @Html.ValidationMessageFor(model => model.within1week_after_delivery)
+                                                         }
+                                                         else
+                                                         {
+                                                       @Html.TextBoxFor(model => model.within1week_after_delivery, new { @type = "date", @class = "form-control" })
+                                                       
+                                                         }
+                                                    </li>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                       <li class="col-sm-12">
+                                                         <label>Date and time initiated breast feeding</label>
+                                                        @if (Model.dateAndTime_initiated_breastfeeding != null)
+                                                        {
+                                                       @Html.TextBoxFor(model => model.dateAndTime_initiated_breastfeeding, new { @class = "form-control" })
+                                                       @Html.ValidationMessageFor(model => model.dateAndTime_initiated_breastfeeding)
+                                                        }
+                                                        else
+                                                        {
+                                                       @Html.TextBoxFor(model => model.dateAndTime_initiated_breastfeeding, new { @type = "date", @class = "form-control" })
+                                                       
+                                                        }
+                                                     </li>
+                                           </div>
+
+                                           <div class="form-inline">
+                                                    <div class="form-group">
+                                                       <li class="col-sm-12">
+                                                         <label>Date iron was given</label>
+                                                         @if (Model.date_iron_was_given != null)
+                                                         {
+                                                       @Html.TextBoxFor(model => model.date_iron_was_given, new { @class = "form-control" })
+                                                       @Html.ValidationMessageFor(model => model.date_iron_was_given)
+                                                         }
+                                                         else
+                                                         {
+                                                       @Html.TextBoxFor(model => model.date_iron_was_given, new { @type = "date", @class = "form-control" })
+                                                       
+                                                         } 
+                                                        </li>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                       <li class="col-sm-12">
+                                                         <label>No. of iron was given</label>
+
+                                                        @Html.TextBoxFor(model => model.no_of_iron_was_given, new { @class = "form-control" })
+                                                       @Html.ValidationMessageFor(model => model.no_of_iron_was_given)
+                                                         
+                                                        </li>
+                                                    </div>
+                                            </div>
+                                             <div class="form-group">
+                                                       <li class="col-sm-12">
+                                                         <label>Date given vitamin A</label>
+                                                         @if (Model.date_vitaminA_was_given != null)
+                                                         {
+                                                       @Html.TextBoxFor(model => model.date_vitaminA_was_given, new { @class = "form-control" })
+                                                       @Html.ValidationMessageFor(model => model.date_vitaminA_was_given)
+                                                         }
+                                                         else
+                                                         {
+                                                       @Html.TextBoxFor(model => model.date_vitaminA_was_given, new { @type = "date", @class = "form-control" })
+                                                       
+                                                         } 
+                                                        
+                                                        </li>
+                                           </div>
+                                                     <input type="submit" class="btn btn-primary" value="Submit" /> 
+                                             </ul>
+                                        }
+                                        </div>									
+                                    </div>
+								</div>
+                               </div>
+                             
+							<div class="col-sm-6 appointment-box-snap"> <img src="~/Visual/Content/Template/Images/img-1.png" alt="image doctor"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+</div>

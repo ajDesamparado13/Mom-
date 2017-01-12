@@ -1,0 +1,103 @@
+﻿@model IEnumerable<MomPlusAdmin.Domain.Entity.Admin>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "AdminList";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+<script src="/Visual/Content/Template/Scripts/jquery-1.11.0.min.js"></script>
+<script src="/Visual/Content/Template/Scripts/Loader.js"></script>
+<link rel="stylesheet" href="/Visual/Content/Template/CSS/LoaderCSS.css">
+<link rel="stylesheet" href="/Visual/Content/themes/PagedList.css">
+<div class="se-pre-con">
+</div>
+<br />
+<div class="container">
+    <!-- upper-section -->
+    <div class="content-section">
+        <div class="row">
+            <div style="display: inline;">
+                <div class="panel panel-success">
+                    <table class="table table-sm" data-animation="fadeInUp" data-delay="0">
+                        <div class="panel-heading">
+                            <div style="display: inline-block; margin-top: 10px; width: 95%;">
+                                <a href="@Url.Action("AdminRegistration", "ManagePeople")" class="btn btn-primary btn-sm" style = "margin-left:10px;">
+                                    <i>
+                                        <img src="/Visual/Images/addMother.png" style="width: 30px;" /></i> <span><strong>Add
+                                            New</strong> </span></a>
+                                <div style="float: right;">
+                                    @using (Html.BeginForm("searchAdmin", "ManagePeople", FormMethod.Get))
+                                    {
+                                        <a href="#" class="btn btn-default btn-sm"><i>
+                                            <img src="/Visual/Images/search.png" style="width: 20px;" />
+                                        </i><span><strong>
+                                            @Html.TextBox("SearchString", null, new { @required = "required", @class = "form-control", @placeholder = "Search item", @style = "display:inline-block;" })
+                                        </strong></span></a> 
+                                    }
+                                <p style="color: Red; padding-left: 10px;">@TempData["notFound"]</p>
+                                   
+                                </div>
+
+                            </div>
+                        </div>
+                        <tr>
+                            <th>@Html.ActionLink("First Name", "AdminList", new { sortOrder = ViewBag.FNameSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Last Name", "AdminList", new { sortOrder = ViewBag.LNameSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Address", "AdminList", new { sortOrder = ViewBag.AddressSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Birth Date", "AdminList", new { sortOrder = ViewBag.DateSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Contact Number", "AdminList", new { sortOrder = ViewBag.NameSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Gender", "AdminList", new { sortOrder = ViewBag.GenderSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Username", "AdminList", new { sortOrder = ViewBag.UserNameSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Password", "AdminList", new { sortOrder = ViewBag.PasswordSortParm })
+                            </th>
+                            <th>
+                                @Html.ActionLink("Position", "AdminList", new { sortOrder = ViewBag.PositionSortParm })
+                            </th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.first_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.last_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.birth_date)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.contact_num)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.username)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.password)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Position)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#about -->

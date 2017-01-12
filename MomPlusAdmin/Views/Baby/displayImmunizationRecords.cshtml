@@ -1,0 +1,122 @@
+﻿@model IEnumerable<MomPlusAdmin.Domain.Entity.ImmunizationEntity>
+@{ 
+    String babyID = "";
+}
+@foreach (var item in Model)
+{
+    babyID = @item.baby_id.ToString();
+}
+<div class="well well-sm" style="background-color: White; margin-top: 40px;">
+    @if (!babyID.Equals(""))
+    {
+        <div style="display: inline-block; float: right; margin-bottom: 10px;margin-right: 5px;">
+            <a href="@Url.Action("updateImmunization", "Baby", new { id = babyID })"><i>
+                <img src="/Visual/Images/pencil.png" style="width: 25px;" />
+            </i><span>Update record</span> </a>
+        </div>
+    }
+    <table class="table table-sm" data-animation="fadeInUp" data-delay="0">
+        <tr>
+            <th>
+                Immunization Date
+            </th>
+            <th>
+                6 to 12 months
+            </th>
+            <th>
+                12 to 59 months
+            </th>
+            <th>
+                12 to 59 months dosage
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <table  class="table table-sm" data-animation="fadeInUp" data-delay="0">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>Record(s)</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @item.immunization_date.ToShortDateString()
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+            <td>
+                <table  class="table table-sm" data-animation="fadeInUp" data-delay="0">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>Record(s)</th>
+                        </tr>
+                        <tr>
+                            <td>
+                            @if (item.six_to_twelvemos != null)
+                            {
+                                @item.six_to_twelvemos.Value.ToShortDateString()
+                            }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+            <td>
+                <table  class="table table-sm" data-animation="fadeInUp" data-delay="0">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>Record(s)</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @if (item.twelve_to_59mos != null)
+                                {
+                                    @item.twelve_to_59mos.Value.ToShortDateString()
+                                }
+                                
+                            </td>
+                        </tr>  
+                    }
+                </table>
+            </td>
+            <td>
+                <table  class="table table-sm" data-animation="fadeInUp" data-delay="0">
+                    <tr>
+                        <th>
+                            Dosage 1
+                        </th>
+                        <th>
+                            Dosage 2
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                        <td>
+                            @if (item.twelve59mos_dosage1 != null)
+                            {
+                                @item.twelve59mos_dosage1.Value.ToShortDateString()
+                            }
+                            else
+                            { 
+                            <p>dsdf</p>
+                            }
+                                
+                        </td>
+                            <td>
+                            @if (item.twelve59mos_dosage2 != null)
+                            {
+                                @item.twelve59mos_dosage2.Value.ToShortDateString()
+                            }
+                           </td>  
+                        </tr>  
+                    }
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

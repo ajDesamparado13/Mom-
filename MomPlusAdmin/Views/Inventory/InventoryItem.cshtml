@@ -1,0 +1,140 @@
+﻿@model IEnumerable<MomPlusAdmin.Models.ItemModel>
+@{
+    ViewBag.Title = "InventoryItem";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+<script src="~/Visual/Content/Template/Scripts/jquery-1.11.0.min.js"></script>
+<script src="~/Visual/Content/Template/Scripts/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+           html:true,
+        });
+});
+</script>
+<br>
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <div style="display: inline-block; margin-left: 5px; width: 95%;margin-top:10px;">
+            <a href="@Url.Action("NewItem")" class="btn btn-primary btn-sm"><i>
+                <img src="/Visual/Images/addItem.ico" style="width: 35px;" /></i> <span><strong>Add
+                    Item</strong> </span></a>
+            <div style="float: right;">
+                @using (Html.BeginForm("searchItem", "Inventory", FormMethod.Get))
+                {
+                    <a href="#" class="btn btn-default btn-sm"><i>
+                            <img src="/Visual/Images/search.png" style="width: 20px;" />
+                         </i><span><strong>
+                        @Html.TextBox("SearchString", null, new { @required = "required", @class = "form-control", @placeholder = "Search item", @style = "display:inline-block;" })
+                    </strong></span></a> 
+                     <p style="color: Red;">@TempData["searchNotFound"]</p>
+                }
+                
+                @if (TempData["searchFound"] != null)
+                {
+                 <div style = "display:inline;">
+                  <a href = "@Url.Action("InventoryItem")"><h5 style = "color:Blue;">Back to list.</h5></a>
+                </div>
+                }
+               </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        @if (TempData["isSaved"] == "Saved")
+        {
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
+                    Success!</strong>New item added to inventory.
+            </div>
+        }
+        @if (TempData["isNotSaved"] != null)
+        {
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
+                    Fail!</strong> Unable to add new item, please make sure to provide valid input.
+            </div>
+        }
+        <table class="table">
+            <tr class="well  well-sm" style="background-color: White;">
+                <th>
+                    @Html.DisplayNameFor(model => model.item_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitOfIssued)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Qty)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </th>
+                <th>
+                </th>
+            </tr>
+            <tr>
+                @if (ViewData["operationType"] == "NewItem")
+                {
+                    <td>
+                        @{Html.RenderAction("addNewItem", "Inventory");}
+                    </td>
+    
+                }
+            </tr>
+            <tr>
+                @if (ViewData["operationType"] == "Edit")
+                {
+                    <td>
+                        @{Html.RenderAction("Edit", "Inventory");}
+                    </td>
+                }
+            </tr>
+            @foreach (var item in Model)
+            {
+    
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.item_id)
+                        @if (item.Qty <= 5)
+                        {
+                            { Html.RenderAction("isAlmostEmpty"); }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitOfIssued)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Qty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitCost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalAmount)
+                    </td>
+                    <td>
+                        <div style="display: inline-block;">
+                            <a href="@Url.Action("update", "Inventory", new { id = item.item_id })"><i>
+                                <img src="/Visual/Images/pencil.png" style="width: 33px;" />
+                            </i></a><a href="#" type="button" title="Delete item"
+                          data-toggle="popover" data-trigger="focus" data-placement = "top" html = "true"
+                          data-content=
+                          "<h5>Are you sure to delete this?</h5><br><div class='btn-group' style = 'margin-left: 50px;'><a href = '@Url.Action("Delete", new { id = item.item_id })' ><img src = '/Visual/Images/ok.png' width = '60px;'></a> <a href = '@Url.Action("InventoryItem")'><img src = '/Visual/Images/no.png' width = 50px;'></a></div>">
+                                <i>
+                                    <img src="/Visual/Images/delete.png" style="width: 40px;" />
+                                </i></a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

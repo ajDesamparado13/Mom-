@@ -1,0 +1,49 @@
+﻿@model MomPlusAdmin.Models.ItemModel
+<script>
+    $(document).ready(function () {
+        $("#addItem").click(function () {
+            $('input[type="image"][name="submit"][alt]').replaceWith('<input type="submit" name="submit">');
+        });
+
+
+    });
+
+</script>
+@using (Html.BeginForm("addNewItem", "Inventory"))
+{
+    <td>@Html.TextBoxFor(model => model.Description, new { @class = "form-control input-sm" })
+        @Html.ValidationMessageFor(model => model.Description)
+    </td>
+    <td>@Html.TextBoxFor(model => model.UnitOfIssued, new { @class = "form-control input-sm" })
+        @Html.ValidationMessageFor(model => model.UnitOfIssued)
+    </td>
+    
+    
+    <td>
+        @Html.TextBoxFor(model => model.Qty, new { @class = "form-control input-sm" })
+        @Html.ValidationMessageFor(model => model.Qty)
+    </td>
+    <td>@Html.TextBoxFor(model => model.UnitCost, new { @class = "form-control input-sm" })
+        @Html.ValidationMessageFor(model => model.UnitCost)
+    </td>
+    <td>@Html.TextBoxFor(model => model.TotalAmount, new { @class = "form-control input-sm", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.TotalAmount)
+    </td>
+    <td>
+        <div style="display: inline-block;">
+            <i>
+                <div>
+                    <i>
+                        <input type="image" src="/Visual/Images/submitItem.png" style="width: 30px;" id="addItem">
+                    </i>
+                </div>
+            </i>
+        </div>
+        <div style="display: inline-block;position:relative;">
+            <i>
+            <a href="@Url.Action("InventoryItem")">
+           <img src="/Visual/Images/cancelItem.png" style="width: 30px;display:block;" />
+            </a></i>
+        </div>
+    </td>        
+}

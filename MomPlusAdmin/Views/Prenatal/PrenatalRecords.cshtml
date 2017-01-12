@@ -1,0 +1,284 @@
+﻿@model IEnumerable<MomPlusAdmin.Domain.Entity.PrenatalEntity>
+<style>
+    .table th, td
+    {
+        padding: 5px 10px 20px 20px;
+        text-align: center;
+        border: solid 1px white;
+    }
+</style>
+@{ 
+    var motherID = ViewBag.motherID;
+    var prenatalID = 0;
+    var checkup = "Prenatal";
+    var updPrenatal = "updatePrenatal";
+}
+@foreach (var item in Model)
+{
+    prenatalID = @item.prenatal_id;
+}
+<div style="color: Black; font-family: Tahoma; margin-top: 10px; width: 100%;" id="prenatal">
+    <div class="comment-box" style="margin-top: 20px;">
+        <figure><img src="~/Visual/Content/Template/Images/img-1.png" alt="doctor"></figure>
+        <h3 style="color: Black;">
+            Prenatal Section</h3>
+    </div>
+    <article class="section-parallax bg-primary" style="background-image: url(/Visual/Images/slide-8.png);
+        border-radius: 10px;">
+                      <a href="@Url.Action("InventoryList", "Inventory", new { @id = motherID, @CheckUpType = checkup }, null)" class="btn btn-default btn-sm" style = "float:right;margin-bottom:10px;">
+                            <i>
+                                <img src="/Visual/Images/add.png" style="width: 20px;" />
+                            </i><span><strong>Add New Record</strong></span> </a>
+                                @ViewBag.prenatalIsUpdated
+                                @if (prenatalID != 0)
+                                {
+                                        <a href="@Url.Action("InventoryList", "Inventory", new { @id = motherID, @CheckUpType = updPrenatal }, null)" class="btn btn-default btn-sm" style = "float:right; margin-right:10px;margin-bottom:12px;">
+                                        <i>
+                                            <img src="/Visual/Images/pencil.png" style="width: 20px;" />
+                                        </i><span><strong>Update record</strong></span></a>
+                                }   
+    <table class="table table-sm">
+        <tr>
+            <th>
+                DATE TETANUS TOXIOD VACCINE GIVEN
+            </th>
+            <th>
+                Date given vitamin
+            </th>
+            <th>
+                Date and number of iron was given
+            </th>
+            <th>
+                Risk code detected
+            </th>
+            <th>
+                Pregnancy
+            </th>
+            <th>
+                Live Birthing
+            </th>
+            <th>@Html.DisplayNameFor(model => model.remarks)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <table class="table table-sm" style = "color:White; background-color:Transparent;font-size:12px;">
+                    <tr>
+                        <th>
+                            TT1
+                        </th>
+                        <th>
+                            TT2
+                        </th>
+                        <th>
+                            TT3
+                        </th>
+                        <th>
+                            TT4
+                        </th>
+                        <th>
+                            TT5
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        prenatalID = item.prenatal_id;
+                        <tr>
+                            <td>
+                            @if (item.tt1 != null)
+                            {
+                                @item.tt1.Value.ToShortDateString()
+                            }
+                            </td>
+                            <td>
+                            @if (item.tt2 != null)
+                            {
+                                @item.tt2.Value.ToShortDateString()
+                            }
+                            </td>
+                            <td>
+                            @if (item.tt3 != null)
+                            {
+                                @item.tt3.Value.ToShortDateString()
+                            }
+                            </td>
+                            <td>
+                            @if (item.tt4 != null)
+                            {
+                                @item.tt4.Value.ToShortDateString()
+                            }
+                            </td>
+                            <td>
+                            @if (item.tt5 != null)
+                            {
+                                @item.tt5.Value.ToShortDateString()
+                            }
+                                </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+            <td>
+                <table class="table table-sm" style = "color:White; background-color:Transparent;font-size:12px;"  data-animation="fadeInUp" data-delay="0">
+                     <tr>
+                            <td>
+                                Record(s)
+                            </td>
+                        </tr>
+                       
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.date_given_vit_A.Value.ToShortDateString()
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+            <td>
+                <table class="table table-sm" style = "color:White; background-color:Transparent;font-size:12px;" data-animation="fadeInUp" data-delay="0">
+                    <tr>
+                        <th width="50%">
+                             Given
+                        </th>
+                        <th width="50%">
+                            No. Given
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.date_iron_was_given.Value.ToShortDateString()
+                            </td>
+                            <td>
+                                @item.no_iron_was_given
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+            <td>
+                <table class="table table-sm" style = "color:White; background-color:Transparent;font-size:12px;" data-animation="fadeInUp" data-delay="0">
+                   <tr>
+                            <td>
+                                Record(s)
+                            </td>
+                        </tr>
+                    @foreach (var item in Model)
+                    {
+                        
+                        <tr>
+                            <td>
+                                @item.risk_code_detected.Value.ToShortDateString()
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+            <td>
+                <table class="table table-sm" style = "color:White; background-color:Transparent;font-size:12px;" data-animation="fadeInUp" data-delay="0">
+                    <tr>
+                        <th>
+                            Terminated
+                        </th>
+                        <th>
+                            Outcome
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.date_terminated.Value.ToShortDateString()
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.outcome)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+            <td>
+                <table class="table table-sm" style = "color:White; background-color:Transparent;font-size:12px;" data-animation="fadeInUp" data-delay="0">
+                    <tr>
+                        <th>
+                            Weight
+                        </th>
+                        <th>
+                            Place
+                        </th>
+                        <th>
+                            Attended_B
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.birth_weight)
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.place_Of_delivery)
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.attended_B)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+            <td>
+                <table class="table table-sm" style = "color:White; background-color:Transparent;font-size:12px;" data-animation="fadeInUp" data-delay="0">
+                    <tr>
+                            <td>
+                                Record(s)
+                            </td>
+                        </tr>
+                    @foreach (var item in Model)
+                    {
+                        
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.remarks)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" style = "color:White; background-color:Transparent;font-size:12px;"  data-animation="fadeInUp" data-delay="0">
+        <tr>
+            <th>
+                Date of Prenatal Visits
+            </th>
+        </tr>
+        <tr>
+            <table class="table table-sm" style = "color:White; background-color:Transparent;font-size:12px;" data-animation="fadeInUp" data-delay="0">
+                <tr>
+                    <th>
+                        First Trimester
+                    </th>
+                    <th>
+                        Second Trimester
+                    </th>
+                    <th>
+                        Third Trimester
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.first_trimester)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.second_trimester)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.third_trimester)
+                            <p>
+                                NULL</p>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </tr>
+    </table>
+    </article>
+</div>

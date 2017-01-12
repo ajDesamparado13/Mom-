@@ -1,0 +1,49 @@
+To do list: 
+**Search**
+Search modal
+Search dropdown[done]
+Study LINQ
+Search Login[done]
+
+
+**Features**
+			
+			*add badge in navigation bar
+			* add calendar[if  ever malimtan, just put the static event sa calendar, no need to add new
+			event]
+			* add code to truncate data after 1 day sa event[after login sa admin]
+			  - just check the datetime now and event
+			*in android, add a code to check the date for the newsfeed
+			*DESIGN!!!!!!!!
+
+			- Inventory page[done]
+			- Calendar
+			- Design homepage
+			- search how eclipse connect to sql server
+			- add updates in immunization inventory
+			--Search--
+			- search how to display textboxfor date only
+			- try catch all actionresults
+			[design]- display med history
+			
+
+
+
+			- Enhance design
+			  *Event Calendar
+					- Admin side
+						- calendar
+
+					- User
+						- Calendar static pic
+						- details
+
+		
+
+[Done :( tears of joy]
+*Search
+Search graphical reports
+*Design
+ - Homepage
+ - Profile
+ - Event Calendar

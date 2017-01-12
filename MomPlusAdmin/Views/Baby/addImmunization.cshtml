@@ -1,0 +1,81 @@
+﻿@model MomPlusAdmin.Models.ImmunizationModel
+@{
+    ViewBag.Title = "addImmunization";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+<div id="services">
+    <!-- appointment section -->
+    <article class="section">
+			<div class="section-image">
+				<div class="container">
+					<!-- appointment-area -->
+					<div class="appointment-area">
+						<div class="row">
+							<div class="col-sm-10 col-md-6">
+								<!-- appointment-box -->
+								
+                                <div class="appointment-box">
+									      <div class="upper-section">
+                                                <header class="heading animated fadeInUp in" data-animation="fadeInUp" data-delay="0">
+                                                <h3>Add New Immunization Record</h3>
+                                               
+                                                </header>
+                                           </div>
+                                   
+									<div class="text">
+                                    	<div class="appointment-form">
+
+                                @using (Html.BeginForm("addImmunization", "Baby", new { id = ViewBag.babyID }, FormMethod.Post))
+                                {
+                                    @Html.ValidationSummary(true)
+       
+                                        @Html.HiddenFor(model => model.immunization_id)
+                                        @Html.DisplayFor(model => model.baby_id)
+
+                                    <div style="display: inline-block;" class="col-md-6">
+                                        <label>Immunization Date:</label>
+                                        @Html.TextBoxFor(model => model.ImmunizationDate, new { @type = "Date", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ImmunizationDate)
+                                    </div>
+                                    <div style="display: inline-block;" class="col-md-6">
+                                        <label>
+                                            6 to 12 months</label>
+                                        @Html.TextBoxFor(model => model.six_to_twelvemos, new { @type = "Date", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.six_to_twelvemos)
+                                    </div>
+                                    <div style="display: inline-block;" class="col-md-6">
+                                        <label>
+                                            12 to 59 months</label>
+                                        @Html.TextBoxFor(model => model.twelve_to_59mos, new { @type = "Date", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.twelve_to_59mos)
+                                    </div>
+                                    <div style="display: inline-block;" class="col-md-6">
+                                        <label>
+                                            12 to 59 months dosage 1</label>
+                                        @Html.TextBoxFor(model => model.twelve59mos_dosage1, new { @type = "Date", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.twelve59mos_dosage1)
+                                    </div>
+                                    <div style="display: inline-block;" class="col-md-6">
+                                        <label>
+                                            12 to 59 months dosage 2</label>
+                                        @Html.TextBoxFor(model => model.twelve59mos_dosage2, new { @type = "Date", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.twelve59mos_dosage2)
+                                    </div>
+                                    <div style="padding: 35px 0px 0px 10px; display: inline-block;">
+            
+                                        <input type="submit" value="Submit" name="update" class="btn btn-xs btn-default" style=" margin-top: 30px;" />
+                                    </div>
+        
+                                }
+                                </div>									
+                                    </div>
+								</div>
+                               </div>
+                             
+							<div class="col-sm-6 appointment-box-snap"> <img src="~/Visual/Content/Template/Images/img-1.png" alt="image doctor"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+</div>

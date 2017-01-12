@@ -1,0 +1,120 @@
+﻿@model IEnumerable<MomPlusAdmin.Domain.Entity.PostPartumEntity>
+@{ 
+    var motherID = ViewBag.motherID;
+    var postpartum = 0;
+    var checkup = "Postpartum";
+    var updPostpartum = "updatePostpartum";
+}
+@foreach (var item in Model)
+{
+    postpartum = @item.postpartum_id;
+
+}
+<div style="color: Black; font-family: Tahoma; margin-top: 10px; width: 100%;" id="prenatal">
+    <div class="comment-box" style="margin-top: 20px;">
+        <figure><img src="~/Visual/Content/Template/Images/img-1.png" alt="doctor"></figure>
+        <h3 style="color: Black;">
+            Postpartum Section</h3>
+    </div>
+    <article class="section-parallax bg-primary" style="background-image: url(/Visual/Images/slide-8.png);
+        border-radius: 10px;">
+                      <a href="@Url.Action("InventoryList", "Inventory", new { @id = motherID, @CheckUpType = checkup }, null)" class="btn btn-default btn-sm" style = "float:right;margin-bottom:10px;">
+                            <i>
+                                <img src="/Visual/Images/add.png" style="width: 20px;" />
+                            </i><span><strong>Add New Record</strong></span> </a>
+                                @if (postpartum != 0)
+                                {
+                                       <a href="@Url.Action("InventoryList", "Inventory", new { @id = motherID, @CheckUpType = updPostpartum }, null)" class="btn btn-default btn-sm" style = "float:right; margin-right:10px;margin-bottom:12px;">
+                                        <i>
+                                            <img src="/Visual/Images/pencil.png" style="width: 20px;" />
+                                        </i><span><strong>Update record</strong></span></a>
+                                       
+                                }
+            <table class="table table-sm" data-animation="fadeInUp" data-delay="0">
+                <tr>
+                    <th>
+                        Date Postpartum visits
+                    </th>
+                    <th>
+                        Date and time initiated breastfeeding
+                    </th>
+                    <th>
+                        Micronutrient Supplementation
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="table table-sm" style = "background-color:Transparent;">
+                            <tr>
+                                <th>
+                                    Within 24 hours after delivery
+                                </th>
+                                <th>
+                                    Within 1 week after delivery
+                                </th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+  
+                                <tr>
+                                    <td>@item.within24hrs_after_delivery.ToShortDateString()
+                                    </td>
+                                    <td>@item.within1week_after_delivery.ToShortDateString()
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </td>
+                    <td>
+                        <table class="table table-sm"  style = "background-color:Transparent;">
+                        <tr><td>Record(s)<br /></td></tr>
+                            @foreach (var item in Model)
+                            {
+                    
+                                <tr>
+                                    <td>
+                                        @if (item.dateAndTime_initiated_breastfeeding != null)
+                                        {
+                                        @item.dateAndTime_initiated_breastfeeding.Value.ToShortDateString()
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>
+                                    Date iron was given
+                                </th>
+                                <th>
+                                    No. of iron was given
+                                </th>
+                                <th>
+                                    Date vitamin A was given
+                                </th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                    @if (item.date_iron_was_given != null)
+                                    {
+                                    @item.date_iron_was_given.Value.ToShortDateString()
+                                    }
+                                    </td>
+                                    <td>@item.no_of_iron_was_given</td>
+                                    <td>
+                                    @if (item.date_vitA_was_given != null)
+                                    {
+                                    @item.date_vitA_was_given.Value.ToShortDateString()
+                                    }
+                                    </td>
+                                </tr>  
+                            }
+                        </table>
+                    </td>
+                </tr>
+            </table>
+</div>

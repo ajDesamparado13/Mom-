@@ -1,0 +1,90 @@
+﻿@model MomPlusAdmin.Models.BabyModel
+@{
+    ViewBag.Title = "Baby Profile";
+    var checkup = "Immunization";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+<script src="~/Visual/Content/Template/Scripts/BabyProfile.js"></script>
+<br />
+<div class="container" id="motherInfo">
+    @if (TempData["ImmunizationRecord"] != null)
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> new record added/updated.
+       </div>  
+    }
+    <div class="row">
+        <div class="col-md-8">
+            <div class="well  well-sm" style="background-color: White;">
+                <div class="media">
+                    <div class="media-body" style="font-weight: bold;">
+                        <div class="well  well-sm" style="background-color: White; display: inline-block;">
+                            <h3>
+                                Baby's Profile</h3>
+                            @using (Html.BeginForm("BabyProfile", "Baby", FormMethod.Post, new { id = ViewBag.babyID }))
+                            {
+                                @Html.ValidationSummary(true)
+                                @Html.HiddenFor(model => model.baby_id)
+                                @Html.HiddenFor(model => model.mother_id)
+
+                                <div style="display: inline-block;" class="col-md-6">
+                                    @Html.DisplayNameFor(model => model.FirstName)
+                                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @readonly = "readonly", id = "firstname" })
+                                </div>
+                                <div style="display: inline-block;" class="col-md-6">
+                                    @Html.DisplayNameFor(model => model.LastName)
+                                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @readonly = "readonly", id = "lastname" })
+                                </div>
+                                <div style="display: inline-block;" class="col-md-6">
+                                    @Html.DisplayNameFor(model => model.BDate)
+                                    @Html.TextBoxFor(model => model.BDate, new { @class = "form-control", @readonly = "readonly", id = "bdate" })
+                                </div>
+                                <div style="display: inline-block;" class="col-md-6">
+                                    @Html.DisplayNameFor(model => model.Gender)
+                                    @Html.TextBoxFor(model => model.Gender, new { @class = "form-control", @readonly = "readonly", id = "gender" })
+                                </div>
+                                <div style="display: inline-block;" class="col-md-6">
+                                    @Html.DisplayNameFor(model => model.Weight)
+                                    @Html.TextBoxFor(model => model.Weight, new { @class = "form-control", @readonly = "readonly", id = "weight" })
+                                </div>
+                                <div style="display: inline-block;" class="col-md-6">
+                                    @Html.DisplayNameFor(model => model.Height)
+                                    @Html.TextBoxFor(model => model.Height, new { @class = "form-control", @readonly = "readonly", id = "height" })
+                                </div>
+                                <div style="display: inline-block;" class="col-md-6">
+                                    @Html.DisplayNameFor(model => model.DateRegister)
+                                    @Html.TextBoxFor(model => model.DateRegister, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                                <div style="margin-top: 50px;">
+                                    <input type="submit" value="Submit" name="update" class="btn btn-xs btn-default"
+                                        id="updateBtn" style="display: none; margin-top: 30px;" />
+                                    <a href="#" class="btn btn-xs btn-default" id="editBtn" style="margin-top: 30px;">Edit</a>
+                                    <a href="#" class="btn btn-xs btn-default" id="cancelBtn" style="display: none; margin-top: 30px;">
+                                        Cancel</a>
+                                </div>
+                                  
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="display: inline-block;">
+                            Immunization Record(s)</h4>
+                        <div style="display: inline-block; float: right; margin-bottom: 10px;">
+                            <a href="@Url.Action("InventoryList", "Inventory", new { id = Model.baby_id, @CheckUpType = @checkup }, null)" class="btn btn-default btn-sm" style = "float:right;">
+                                <i>
+                                    <img src="/Visual/Images/Syringe-48.png" style="width: 30px;" />
+                                </i><span><strong>Add immunization</strong></span> </a>
+                        </div>
+                        <div>
+                            @{Html.RenderAction("displayImmunizationRecords", "Baby");}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <img src="@Url.Action("getDev", new { id = Model.baby_id })" alt="Line Chart using MVC" />
+        </div>
+    </div>
+</div>

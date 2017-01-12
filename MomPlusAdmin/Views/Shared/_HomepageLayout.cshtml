@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Mom+</title>
+    <link href="~/logo.png" rel="shortcut icon" type="~/Visual/Images/logo.png" />
+    @*CSS*@
+    @Styles.Render("~/Visual/Content/Template/CSS/font-awesome.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/bootstrap.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/style.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/settings.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/magnific-popup.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/owl.carousel.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/owl.transitions.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/animate.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/responsive.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/datepicker.css")
+    @Styles.Render("~/Visual/Content/Template/CSS/color.css")
+    @*JS*@
+    @Scripts.Render("~/Visual/Content/Template/Scripts/common.js")
+    @Scripts.Render("~/Visual/Content/Template/Scripts/util.js")
+    @Scripts.Render("~/Visual/Content/Template/Scripts/stats.js")
+    <script src="~/Visual/Content/Template/Scripts/jquery-1.11.0.min.js"></script>
+    <script src="~/Visual/Content/Template/Scripts/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+           html:true,
+        });
+});
+    </script>
+</head>
+<body class="single-page" style="background-image: url(/Visual/Images/slide-8.png);
+    -webkit-background-size: cover; /* for webkit*/
+    -moz-background-size: cover; /* mozilla*/
+    -o-background-size: cover; /* opera*/
+    background-size: cover; /* generic*/">
+    <br />
+    <div class="navbar navbar navbar-fixed-top">
+        <div class="container">
+            <!--nav-collapse -->
+            <nav class="collapse navbar-collapse">
+						<ul class="nav navbar-nav">
+                            <li class="active">@Html.ActionLink("Home", "Homepage", "Homepage")</li>
+							<li class="has-ul"><span class="menu-sibling"></span>
+								<a href="#">Services @{Html.RenderAction("isAlmostEmpty", "Inventory");}</a>
+                                <ul>
+                                    <li>
+                                        @Html.ActionLink("Inventory", "InventoryItem", "Inventory")
+                                   </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Calendar")">Event Calendar
+                                        </a>
+                                   </li>
+                               
+                               </ul>
+                            </li>
+                           <li class="has-ul"><span class="menu-sibling"></span>
+							<a href="#">Manage People @{Html.RenderAction("PospartumAlert", "ManagePeople");}</a>
+								<ul>
+                                    <li>@Html.ActionLink("Administrator", "AdminList", "ManagePeople")</li>
+									<li>@Html.ActionLink("Mother", "MotherList", "ManagePeople")</li>
+                                    <li>@Html.ActionLink("Postpartum List", "PostpartumList", "ManagePeople")</li>
+				                </ul>
+                            </li>
+                            <li class="has-ul"><span class="menu-sibling"></span>
+							      <a href = "#">Hi @RenderPage("~/Views/Homepage/printUsername.cshtml") </a>
+						    
+                                   <ul>
+                                  <li>@Html.ActionLink("Signout", "Signout", "Homepage")</li>
+                                 </ul>
+                            </li>
+                        </ul>
+
+					</nav>
+        </div>
+    </div>
+    <br />
+    <div id="body">
+        <section>
+                @RenderBody()
+       </section>
+    </div>
+    <div class="site-btm">
+        <div class="container">
+            <p class="copyright">
+                © Copyright 2016 Mom+</p>
+            <ul class="bottom-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="">Dashboard</a></li>
+                <li><a href="#">Post-Partum</a></li>
+                <li><a href="#">Prenatal</a></li>
+                <li><a href="#">Immunization</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

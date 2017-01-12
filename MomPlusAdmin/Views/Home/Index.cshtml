@@ -1,0 +1,59 @@
+﻿@model MomPlusAdmin.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_landingPageLayout.cshtml";
+}
+<script src="/Visual/Content/Template/Scripts/jquery-1.11.0.min.js"></script>
+<script src="/Visual/Content/Template/Scripts/Loader.js"></script>
+<link rel="stylesheet" href="/Visual/Content/Template/CSS/LoaderCSS.css">
+<script src="~/Visual/Content/Template/Scripts/jquery-1.11.0.min.js"></script>
+<script src="~/Visual/Content/Template/Scripts/bootstrap.min.js"></script>
+<div class="se-pre-con">
+</div>
+@using (Html.BeginForm("Index", "Home"))
+{
+    @Html.ValidationSummary(true) 
+    <div class="top-content">
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>Login to get started</h3>
+                                @if (@ViewBag.LogInError != null)
+                                {
+                                    <div class="alert alert-danger">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
+                                            Fail!</strong> @ViewBag.LogInError
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-top-right">
+                                <img src="~/Visual/Images/logo.png" width="80px" />
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <form role="form" action="" method="post" class="login-form">
+                            <div class="form-group">
+                                <div>
+                                    @Html.TextBoxFor(model => model.Username, new { @placeholder = "Username..", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Username, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.Password, new { @placeholder = "Password...", @type = "password", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="buttonID" style = "width: 50%;">
+                                Sign in</button>
+                                <p style = "color:Red;">@TempData["sessionIsExpired"]</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

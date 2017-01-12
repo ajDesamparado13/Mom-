@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "MotherProfile";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+@{var motherID = ViewBag.motherID;}
+<html>
+<head>
+    <script src="/Visual/Content/Template/Scripts/jquery-1.11.0.min.js"></script>
+    <script src="/Visual/Content/Template/Scripts/bootstrap.min.js"></script>
+    <script src="/Visual/Content/Template/Scripts/Loader.js"></script>
+    <link rel="stylesheet" href="/Visual/Content/Template/CSS/successLoader.css">
+</head>
+<body>
+    <br />
+    <div class="container" style="width: 100%;">
+        <ul class="nav nav-tabs nav-justified" style="font-weight: bold; color: White;">
+            <li class="active"><a data-toggle="pill" href="#home" style="color: black; font-family: Yu Gothic;">
+                <img src="/Visual/Images/Circled User Female -48.png" style="width: 40px;">Profile
+            </a></li>
+            <li><a data-toggle="pill" href="#hey" style="color: black; font-family: Yu Gothic;">
+                <img src="/Visual/Images/Pregnant-48.png" style="width: 40px;">Prenatal </a>
+            </li>
+            <li><a data-toggle="pill" href="#menu2" style="color: black; font-family: Yu Gothic;">
+                <img src="/Visual/Images/Reminder-48.png" style="width: 40px;">
+                Postpartum </a></li>
+            <li><a data-toggle="pill" href="#menu3" style="color: black; font-family: Yu Gothic;">
+                <img src="/Visual/Images/News-48.png" style="width: 40px;">
+                Medical History </a></li>
+        </ul>
+        <div class="tab-content" style="width: 100%; margin-top: 20px;">
+            <div id="home" class="tab-pane fade in active">
+                <div class="container" id="motherInfo">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="well  well-sm" style="background-color: White;">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <font style="font-size: large;">Mother Profile Station</font>
+                                             
+                                              @if (TempData["isSuccessful"] != null)
+                                              {
+                                              <div class="alert alert-success">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                                                <strong>Successful!</strong>New entry added.
+                                                </div> 
+                                              }
+                                        <div>
+                                            @{Html.RenderAction("PersonalInformation", "MotherProfile");}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                   <div style="display: inline-block;float:right;margin-top: -700px;"">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="well  well-sm" style="background-color: White;">
+                                <div class="media">
+                                    <div class="media-body">
+                                     @if (TempData["newBaby"] != null)
+                                              {
+                                              <div class="alert alert-success">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <strong>Success</strong>new baby added.
+                                               </div>  
+                                              }
+                                        <a href="@Url.Action("RegisterBaby", "Baby", new { id = motherID })" class="btn btn-default btn-sm" style = "float:right;">
+                                            <i>
+                                                <img src="/Visual/Images/babies.ico" style="width: 20px;" />
+                                            </i><span><strong>Add new baby</strong></span> </a>
+                                        @{Html.RenderAction("displayListOfBaby", "Baby", new { id = motherID });}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+            <div id="hey" class="tab-pane fade">
+                <div style="display: inline-block; position: relative;">
+                    @{Html.RenderAction("PrenatalRecords", "Prenatal");}
+                </div>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <div style="display: inline-block; position: relative;">
+                    @{Html.RenderAction("displayPostpartumRecords", "Postpartum");}
+                </div>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <div style="display: inline-block; position: relative;">
+                    @{Html.RenderAction("getPersonnel", "ManagePeople", new { id = motherID });}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

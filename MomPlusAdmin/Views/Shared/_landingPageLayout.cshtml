@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Welcome to Mom+</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="Images/logo.png" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Visual/Form_LandingPage/bootstrap.min.css")
+    @Styles.Render("~/Visual/Form_LandingPage/font-awesome.min.css")
+    @Styles.Render("~/Visual/Form_LandingPage/form-elements.css")
+    @Styles.Render("~/Visual/Form_LandingPage/style.css")
+    @Scripts.Render("~/Visual/Form_LandingPage/scripts.js")
+</head>
+<body
+    style="background: url(Visual/Content/Template/Images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover; /* for webkit*/
+    -moz-background-size: cover; /* mozilla*/
+    -o-background-size: cover; /* opera*/
+    background-size: cover; /* generic*/">
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

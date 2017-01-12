@@ -1,0 +1,115 @@
+﻿@model MomPlusAdmin.Models.InventoryModel
+@{
+    ViewBag.Title = "InventoryList";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+<link href="~/Visual/Autocomplete/jquery-editable-select.min.css" rel="stylesheet" />
+<script src="~/Visual/Content/Template/Scripts/jquery-1.11.0.min.js"></script>
+<script src="~/Visual/Content/Template/Scripts/bootstrap.min.js"></script>
+
+<div>
+    <!-- appointment section -->
+    <article class="section">
+			<div class="section-image">
+				<div class="container">
+					<!-- appointment-area -->
+					<div class="appointment-area">
+						<div class="row">
+							<div class="col-sm-10 col-md-6">
+								<!-- appointment-box -->
+								
+                                <div class="appointment-box">
+									      <div class="upper-section">
+                                                <header class="heading animated fadeInUp in" data-animation="fadeInUp" data-delay="0">
+                                                <h3>Add medicine given</h3>
+                                                <h5 style = "color:orange;">* Please make sure to input all medicine given to mother.</h5>
+                                                   
+                                                </header>
+                                           </div>
+                                   
+									<div class="text">
+                                    	<div class="appointment-form" >
+                                            <ul class="row" id="prenatalId">    
+                                            <div class="form-inline" id = "inventoryForms">
+                                                @using (Html.BeginForm(FormMethod.Post))
+                                                {
+                                                    @Html.HiddenFor(m => m.user_id)
+                                                    
+                                                <div class="form-group">
+                                                    <li class="col-sm-12">
+                                                        <label>Select medicine name:</label>
+                                                        @Html.DropDownListFor(m => m.ItemDescription, Model.selectedItem, new { id = "slide", @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.ItemDescription)
+     
+                                                    </li>
+                                                </div>
+                                                <div class="form-group" style="padding-left: 20px;">
+                                                    <li class="col-sm-12">
+                                                        <label>
+                                                            Number of medicine</label>
+                                                        @Html.TextBoxFor(model => model.noOfMeds, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.noOfMeds)
+     
+                                                    </li>
+                                                </div>
+                                                <div>
+                                                @if (TempData["inventoryNotUpdated"] != null)
+                                                {
+                                                    <div class="alert alert-danger">
+                                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
+                                                    Not enough stock</strong> Please visit inventory page to check
+                                                    </div>
+                                                }
+                                                else if (TempData["isUpdated"] != null)
+                                                {
+                                                 <div class="alert alert-success">
+                                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
+                                                    Success</strong> Inventory has successfully updated
+                                                    </div>
+                                                }
+                                                else if (TempData["inputError"] != null)
+                                                {
+                                                    <div class="alert alert-danger">
+                                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
+                                                    Failed!</strong> Please provide valid input.
+                                                    </div>
+                                                }
+                                                 
+                                                    
+                                                </div>
+                                                 <div style = "float:right; margin-right:20px;">
+                                                     @Html.HiddenFor(model => model.checkUpType);
+                                                     <input type="submit" class="btn btn-primary" value="Submit" />
+                                                    </div>
+                                                }
+                                                <a href="@Url.Action("RedirectToProfile", "Inventory", new { id = Model.user_id, CheckUpType = Model.checkUpType })" class="btn btn-warning" style = "float:right; margin-right:5px;">Done</a>
+                                            </div>
+                                            </ul>
+                                              
+                                        </div>									
+                                    </div>
+								</div>
+                               </div>
+                             
+							<div class="col-sm-6 appointment-box-snap"> <img src="~/Visual/Content/Template/Images/img-1.png" alt="image doctor"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+</div>
+<script src="/Visual/Autocomplete/jquery-latest.min.js"></script>
+<script src="/Visual/Autocomplete/jquery-editable-select.min.js"></script>
+<script>
+    window.onload = function () {
+        $('#basic').editableSelect();
+        $('#slide').editableSelect({ effects: 'slide' });
+        $('#filter').editableSelect({ filter: false });
+        $('#html').editableSelect();
+        $('#onselect').editableSelect({
+            onSelect: function (element) {
+                $('#afterSelect').html($(this).val());
+            }
+        });
+    }
+</script>

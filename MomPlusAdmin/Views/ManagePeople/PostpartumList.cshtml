@@ -1,0 +1,96 @@
+﻿@model IEnumerable<MomPlusAdmin.Domain.Entity.PostPartumEntity>
+@{
+    var tomorrow = @DateTime.Today.AddDays(1);
+    ViewBag.Title = "PostpartumList";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+<br />
+<div class="container">
+    <!-- upper-section -->
+    <div class="content-section">
+        <div class="row">
+            <div style="display: inline">
+                <div class="panel panel-success">
+                    <table class="table table-sm" data-animation="fadeInUp" data-delay="0">
+                        <div class="panel-heading">
+                            <div style="display: table-header-group;">
+                                @using (Html.BeginForm("searchPostpartum", "ManagePeople", FormMethod.Get))
+                                {
+                               
+                                    @Html.TextBox("SearchString", null, new { @required = "required", @class = "form-control", @placeholder = "Search by name...", @style = "margin-left:20px;margin-top:10px;" })  
+                                    <font style="color: Red; text-align: justify; margin-left: 15px;">@ViewBag.SearchNotFound</font>
+                                }
+                            </div>
+                            <br />
+                        <tr>
+                            <th>
+                                @Html.ActionLink("Mother ID", "PostpartumList", new { sortOrder = ViewBag.MotherID })
+                            </th>
+                            <th>
+                                @Html.ActionLink("Within 24hrs after delivery", "PostpartumList", new { sortOrder = ViewBag.Within24hrs })
+                            </th>
+                            <th>
+                                @Html.ActionLink("Within 1week after delivery", "PostpartumList", new { sortOrder = ViewBag.Within1Week })
+                            </th>
+                            <th>
+                                <a href="#">Breast Feeding initiated</a>
+                            </th>
+                            <th>
+                                <a href="#">Date Iron was given</a>
+                            </th>
+                            <th>
+                                <a href="#">No. of iron was given</a>
+                            </th>
+                            <th>
+                                <a href="#">Date vitamin A was given</a>
+                            </th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a href = "@Url.Action("getMotherProfile", "MotherProfile", new { id = item.mother_id })">@Html.DisplayFor(modelItem => item.mother_id)</a>
+                                </td>
+                                <td>
+                                    @if (item.within24hrs_after_delivery.Equals(tomorrow))
+                                    {
+                                        { Html.RenderAction("PospartumAlert", "ManagePeople"); }
+                                    }
+                                    @item.within24hrs_after_delivery.ToShortDateString()
+                                </td>
+                                <td>
+                                    @if (item.within1week_after_delivery.Equals(tomorrow))
+                                    {
+                                        { Html.RenderAction("PospartumAlert", "ManagePeople"); }
+                                    }
+                                    @item.within1week_after_delivery.ToShortDateString()
+                                </td>
+                                <td>
+                                    @if (item.dateAndTime_initiated_breastfeeding != null)
+                                    {
+                                        @item.dateAndTime_initiated_breastfeeding.Value.ToShortDateString()
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.date_iron_was_given != null)
+                                    {
+                                        @item.date_iron_was_given.Value.ToShortDateString()
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.no_of_iron_was_given)
+                                </td>
+                                <td>
+                                    @if(item.date_vitA_was_given != null)
+                                    {
+                                    @item.date_vitA_was_given.Value.ToShortDateString()
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,179 @@
+﻿@model MomPlusAdmin.Models.AdminModel
+
+<div id="services">
+	<!-- appointment section -->
+	<article class="section">
+			<div class="section-image">
+				<div class="container">
+					<!-- appointment-area -->
+					<div class="appointment-area">
+						<div class="row">
+							<div class="col-sm-10 col-md-6">
+								<!-- appointment-box -->
+								
+								<div class="appointment-box">
+										  <div class="upper-section">
+												<header class="heading animated fadeInUp in" data-animation="fadeInUp" data-delay="0">
+												<h3>Create New Admin Account</h3>
+												</header>
+										   </div>
+								   
+									<div class="text">
+										<div class="appointment-form">
+											<ul class="row">
+											@using (Html.BeginForm("AdminRegistration", "ManagePeople", FormMethod.Post))
+											{
+											  if (TempData["unSuccessful"] != null)
+											  {
+											  <div class="alert alert-danger">
+												<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+												<strong>Snap! </strong>something went wrong.
+											   </div>  
+											  }
+											  else if (TempData["isSuccessful"] != null)
+											  {
+												  <div class="alert alert-success">
+												<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+												<strong>Successfull!</strong>New entry added.
+												</div> 
+											  }
+												
+													<li class="col-sm-12">
+													<label>
+												  
+													 @Html.LabelFor(model => model.Fname)</label>
+														<div data-toggle="popover" data-placement="right"
+														data-content="Fill out this field,3 - 15 characters, string only.">
+															@Html.TextBoxFor(model => model.Fname, new { @class = "form-control" })
+														</div>
+													 @Html.ValidationMessageFor(model => model.Fname, null, new { @class = "text-danger" })
+													 
+													  <label>
+													  @Html.LabelFor(model => model.LName)</label>
+														<div data-toggle="popover" data-placement="right"
+															data-content="Fill out this field, 3 - 15 characters, string only">
+															@Html.TextBoxFor(model => model.LName, new { @class = "form-control" })
+														</div>
+													  @Html.ValidationMessageFor(model => model.LName, null, new { @class = "text-danger" })
+												</li>
+												<li class="col-sm-12">
+													<label>
+													  @Html.LabelFor(model => model.Address)</label>
+														  <div data-toggle="popover" data-placement="right"
+															data-content="Fill out this field, 3 - 20 characters"> 
+															@Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+														  </div>
+													  @Html.ValidationMessageFor(model => model.Address, null, new { @class = "text-danger" })
+												   
+												</li>
+
+												<li class="col-sm-12">
+													<label>
+													  @Html.LabelFor(model => model.Bday)</label>
+													   <div>
+													  @Html.TextBoxFor(model => model.Bday, new { type = "date", @class = "form-control" })
+													   <p class = "text-danger">@ViewBag.notValidBday</p>
+													  </div>
+													  @Html.ValidationMessageFor(model => model.Bday, null, new { @class = "text-danger" })
+													 
+												</li>
+
+												<li class="col-sm-12">
+													<label>
+													  @Html.LabelFor(model => model.ContactNum)</label>
+													   <div data-toggle="popover" data-placement="right"
+															data-content="Contact Number is Required, Tel or mobile, numeric only">
+															@Html.TextBoxFor(model => model.ContactNum, new { @class = "form-control" })
+													  </div>
+													  @Html.ValidationMessageFor(model => model.ContactNum, null, new { @class = "text-danger" })
+													  <h5 style = "color:Red;">@ViewBag.cnumExist</h5>
+												   
+												</li>
+
+												<li class="col-sm-12">
+													<label>
+													  @Html.LabelFor(model => model.Gender)</label>
+													  @Html.DropDownListFor(model => model.Gender,
+														new List<SelectListItem>
+														{
+																new SelectListItem() {Text = "Female", Value="Female"},
+																new SelectListItem() {Text = "Male", Value="Male"},
+								
+														}, new { @class = "form-control" })
+												   
+												</li>
+												
+												 <li class="col-sm-12">
+													<label>
+													 @Html.LabelFor(model => model.Username)</label>
+													  <div data-toggle="popover" data-placement="right"
+															data-content="Fill out this field, 5-10 characters.">
+													 @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+													 </div>
+													 @Html.ValidationMessageFor(model => model.Username, null, new { @class = "text-danger" })
+													 <h5 style = "color:Red;"> @ViewBag.usernameExist</h5>
+												   
+												</li>
+
+												<li class="col-sm-12">
+													<label>
+													  @Html.LabelFor(model => model.Password)</label>
+													  <div data-toggle="popover" data-placement="right" 
+															data-content="Fill out this field, 5-15 characters">
+													  @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @type = "password" })
+													  </div>
+													  @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })
+												   
+												</li>
+
+												<li class="col-sm-12">
+													<label>
+													  @Html.LabelFor(model => model.Position)</label>
+													  @Html.DropDownListFor(model => model.Position,
+														new List<SelectListItem>
+														{
+																new SelectListItem() {Text = "City Health Officer", Value="City Health Officer"},
+																new SelectListItem() {Text = "Medical Officer", Value="Medical Officer"},
+																new SelectListItem() {Text = "Public Health Nurse", Value="Public Health Nurse"},
+																new SelectListItem() {Text = "Staff Nurse", Value="Staff Nurse"},
+																new SelectListItem() {Text = "Staff Midwife", Value="Staff Midwife"},
+																new SelectListItem() {Text = "Public Health Midwife", Value="Public Health Midwife"},
+								
+														}, new { @class = "form-control" })
+												   
+												</li>
+												
+												 <li class="col-sm-12">
+													<label>
+													  @Html.LabelFor(model => model.Clinic)</label>
+													  @Html.DropDownListFor(model => model.Clinic,
+														new List<SelectListItem>
+														{
+																new SelectListItem() {Text = "Pajo", Value="Pajo"},
+																new SelectListItem() {Text = "Sangi", Value="Sangi"},
+																
+																
+								
+														}, new { @class = "form-control" })
+												   
+												</li>
+												
+						  
+												<li>
+												<input type="submit" class="btn btn-primary" value="Submit" /> 
+												</li>
+											}
+																   
+											</ul>
+										</div>									
+									</div>
+								</div>
+							   </div>
+							 
+							<div class="col-sm-6 appointment-box-snap"> <img src="~/Visual/Content/Template/Images/img-1.png" alt="image doctor"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+</div>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MomPlusAdmin.Domain.Entity.MedPersonnelHistoryEntity>
+<div style="color: Black; font-family: Tahoma; margin-top: 10px; width: 100%;" id="prenatal">
+    <div class="comment-box" style="margin-top: 20px;">
+        <figure><img src="~/Visual/Content/Template/Images/img-1.png" alt="doctor"></figure>
+        <h3 style="color: Black;">
+            Personnel who gave medicines</h3>
+    </div>
+    <article class="section-parallax bg-primary" style="background-image: url(/Visual/Images/slide-8.png);
+        border-radius: 10px;">
+                    
+<table class="table table-sm" data-animation="fadeInUp" data-delay="0" style = "color:Black;">
+                  <tr>  
+                    <th>Prenatal Records</th>
+                    <th>Postpartum Records</th>
+                    <th>Immunization Records</th>
+                   @foreach (var item in Model)
+                   {
+
+                <tr>
+                <td>
+                    <table class="table table-sm" style = "text-align:center;">
+                    <tr>
+                        <td>TT1</td>
+                        <td>TT2</td>
+                        <td>TT3</td>
+                        <td>TT4</td>
+                        <td>TT5</td>
+                        <td>Vitamin A</td>
+                        <td>Iron</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.p_gave_tt1)</td>
+                        <td>@Html.DisplayFor(modelItem => item.p_gave_tt2)</td>
+                        <td>@Html.DisplayFor(modelItem => item.p_gave_tt3)</td>
+                        <td>@Html.DisplayFor(modelItem => item.p_gave_tt4)</td>
+                        <td>@Html.DisplayFor(modelItem => item.p_gave_tt5)</td>
+                        <td>@Html.DisplayFor(modelItem => item.p_gave_vit_a)</td>
+                        <td>@Html.DisplayFor(modelItem => item.p_gave_iron)</td>
+                    </tr> 
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-sm">
+                       <tr>
+                            <td>Irons</td>
+                            <td>Vitamin A</td>
+                       </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.pp_gave_iron)</td>
+                            <td>@Html.DisplayFor(modelItem => item.pp_gave_vit_a)</td>
+                        </tr>
+                      </table>
+                </td>
+                <td>
+                    <table  class="table table-sm">
+                        <tr>
+                            <td>6 to 12 Months</td>
+                            <td>12 to 59 Months</td>
+                            <td>Dosage 1</td>
+                            <td>Dosage 2</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.i_6_to_12mos)</td>
+                            <td>@Html.DisplayFor(modelItem => item.i_12_to_59mos)</td>
+                            <td>@Html.DisplayFor(modelItem => item.i_12_to_59mos_dosage1)</td>
+                            <td>@Html.DisplayFor(modelItem => item.i_12_to_59mos_dosage2)</td>
+                        </tr>
+                    </table>
+                </td>
+                </tr>
+           }
+     </table>
+  </article>
+</div>

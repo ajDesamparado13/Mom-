@@ -1,0 +1,94 @@
+﻿@model MomPlusAdmin.Models.MotherModel
+
+<div id="services">
+    <!-- appointment section -->
+    <article class="section">
+			<div class="section-image" style="background-image:url(/Visual/Images/slide-8.png);">
+				<div class="container">
+					<!-- appointment-area -->
+					<div class="appointment-area">
+						<div class="row">
+							<div class="col-sm-10 col-md-6">
+								<!-- appointment-box -->
+								
+                                <div class="appointment-box">
+									      <div class="upper-section">
+                                                <header class="heading animated fadeInUp in" data-animation="fadeInUp" data-delay="0">
+                                                <h3>Create New Mother Account</h3>
+                                                </header>
+                                           </div>
+                                   
+									<div class="text">
+                                    	<div class="appointment-form">
+                                            <ul class="row">
+                                            <li><h5 style = "color:Red;">New Mother account added.</h5></li>
+                                          @using (Html.BeginForm("MotherList", "ManagePeople"))
+                                          {
+                                                @Html.ValidationSummary(true)
+                                                <li class="col-sm-12">
+													<label>@Html.LabelFor(model => model.MotherFName)</label>
+                                                           @Html.TextBoxFor(model => model.MotherFName, new { @class = "form-control", @readonly = "readonly" })      
+                                                 </li>
+
+                                                 <li class="col-sm-12">
+                                                       <label>@Html.LabelFor(model => model.MotherLname)</label>
+                                                        @Html.TextBoxFor(model => model.MotherLname, new { @class = "form-control",@readonly = "readonly" })
+                                                       
+                                                 </li>
+
+                                                <li class="col-sm-12">
+                                                       <label>@Html.LabelFor(model => model.MotherAddress)</label>
+                                                        @Html.TextBoxFor(model => model.MotherAddress, new { @class = "form-control",@readonly = "readonly" })
+                                                        
+                                                 </li> 
+                                                 <li class="col-sm-12">      
+                                                       <label>@Html.LabelFor(model => model.MotherCnum)</label>
+                                                        @Html.TextBoxFor(model => model.MotherCnum, new { @class = "form-control", @readonly = "readonly" })
+                                                              
+                                                  </li>
+                                                 <li class="col-sm-12">
+                                                     <label>@Html.LabelFor(model => model.MotherBdate)</label>
+                                                        @Html.TextBoxFor(model => model.MotherBdate, new { @type = "date", @class = "form-control", @readonly = "readonly" })
+                                                       
+                                                </li>
+                                              <li class="col-sm-12">        
+                                                      <label>@Html.LabelFor(model => model.motherUsername)</label>
+                                                        @Html.TextBoxFor(model => model.motherUsername, new { @class = "form-control", @readonly = "readonly" })
+                                                                 
+                                              </li>
+                                              <li class="col-sm-12">  
+                                                     <label>@Html.LabelFor(model => model.motherPassword)</label>
+                                                        @Html.TextBoxFor(model => model.motherPassword, new { @class = "form-control", @type = "password", @readonly = "readonly" })
+                                                        
+                                              </li> 
+                                              <li class="col-sm-12">
+                                                    <label>@Html.LabelFor(model => model.LMP)</label>
+                                                        @Html.TextBoxFor(model => model.LMP, new { @type = "date", @class = "form-control", @readonly = "readonly" })
+                                                       
+                                               </li>
+                                              <li class="col-sm-12">
+                                                    <label>@Html.LabelFor(model => model.EDC)</label>
+                                                        <input type = "text" value = "@ViewBag.EDC" class = "form-control" readonly />
+                                                       
+                                               </li>         
+                                                        @Html.LabelFor(model => model.DateRegistered)
+                                                        @Html.TextBoxFor(model => model.DateRegistered, new { @Value = @DateTime.Now.ToLocalTime(), @class = "form-control", @readonly = "readonly" })
+            
+                                                <li>
+											   	<input type="submit" class="btn btn-primary" value="Done" /> 
+                                                </li>
+                                             }
+                                            </ul>
+                                        </div>									
+                                    </div>
+								</div>
+                               </div>
+                             
+							<div class="col-sm-6 appointment-box-snap"> <img src="~/Visual/Content/Template/Images/img-1.png" alt="image doctor"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+</div>
+

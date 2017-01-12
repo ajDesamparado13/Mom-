@@ -1,0 +1,10 @@
+﻿@{
+   
+    if (Session["Login"] != null)
+    {
+     @HttpContext.Current.Session["Login"].ToString()
+    }else{
+        HttpNotFoundResult error;
+        
+    }
+}

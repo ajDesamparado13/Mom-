@@ -1,0 +1,137 @@
+﻿@model MomPlusAdmin.Models.BabyModel
+@{
+    ViewBag.Title = "RegisterBaby";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+@{var motherID = ViewBag.motherID;}
+@using (Html.BeginForm("RegisterBaby", "Baby", new { id = motherID }, FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <div id="services">
+        <!-- appointment section -->
+        <article class="section">
+			<div class="section-image" style="background-image:url(/Visual/Images/slide-8.png);">
+				<div class="container">
+					<!-- appointment-area -->
+					<div class="appointment-area">
+						<div class="row">
+							<div class="col-sm-10 col-md-6">
+								<!-- appointment-box -->
+								
+                                <div class="appointment-box">
+									      <div class="upper-section">
+                                                <header class="heading animated fadeInUp in" data-animation="fadeInUp" data-delay="0">
+                                                <h3>Add New Baby</h3>
+                                               
+                                                </header>
+                                           </div>
+                                   
+									<div class="text">
+                                    	<div class="appointment-form">
+                                            <ul class="row">
+                                                <div class="form-group">
+                                                           <li class="col-sm-12">
+                                                               <div class="editor-label">
+                                                                @Html.LabelFor(model => model.FirstName)
+                                                                </div>
+                                                                <div class="editor-field">
+                                                                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.FirstName)
+                                                               </div>
+                                                        </li>
+                                                        </div>
+        
+                                                        <div class="form-group">
+                                                           <li class="col-sm-12">
+                                                            <div class="editor-label">
+                                                            @Html.LabelFor(model => model.LastName)
+                                                            </div>
+                                                            <div class="editor-field">
+                                                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.LastName)
+                                                            </div>
+                                                           </li>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                           <li class="col-sm-12">
+                                                            <div class="editor-label">
+                                                            @Html.LabelFor(model => model.BDate)
+                                                            </div>
+                                                            <div class="editor-field">
+                                                            @Html.TextBoxFor(model => model.BDate, new { @type = "date", @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.BDate)
+                                                            </div>
+                                                          </li>
+                                                        </div>
+                                                        <div class="form-group">
+                                                           <li class="col-sm-12">
+                                                            <div class="editor-label">
+                                                            @Html.LabelFor(model => model.Gender)
+                                                            </div>
+                                                            <div class="editor-field">
+                                                            @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>
+                                                                                                        {
+                                                                                                                new SelectListItem() {Text = "Female", Value="Female"},
+                                                                                                                new SelectListItem() {Text = "Male", Value="Male"},
+                                                                                                        }, new { @class = "form-control" })   
+          
+                                                            </div>
+                                                        </li>
+                                                        </div>
+                                                       <div class="form-group">
+                                                           <li class="col-sm-12">
+            
+                                                        <div class="editor-label">
+                                                            @Html.LabelFor(model => model.Weight)
+                                                        </div>
+                                                        <div class="editor-field">
+                                                            @Html.TextBoxFor(model => model.Weight, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.Weight)
+                                                        </div>
+                                                        </li>
+                                                    </div>
+                                                            <div class="form-group">
+                                                           <li class="col-sm-12">
+            
+                                                        <div class="editor-label">
+                                                            @Html.LabelFor(model => model.Height)
+                                                        </div>
+                                                        <div class="editor-field">
+                                                            @Html.TextBoxFor(model => model.Height, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.Height)
+                                                        </div>
+                                                        </li>
+                                                        </div>
+
+                                                                <div class="form-group">
+                                                           <li class="col-sm-12">
+            
+                                                        <div class="editor-label">
+                                                            @Html.LabelFor(model => model.DateRegister)
+                                                        </div>
+                                                        <div class="editor-field">
+                                                            @Html.TextBoxFor(model => model.DateRegister, new { @Value = @DateTime.Now.ToLocalTime(), @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.DateRegister)
+                                                        </div>
+                                                        </li>
+                                                        </div>
+                                                        <p>
+                                                             <input type="submit" class="btn btn-primary" value="Submit" />
+                                                        </p>
+    
+                                                </ul>
+                                        </div>									
+                                    </div>
+								</div>
+                               </div>
+                             
+							<div class="col-sm-6 appointment-box-snap"> <img src="~/Visual/Content/Template/Images/img-1.png" alt="image doctor"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+    </div>
+}

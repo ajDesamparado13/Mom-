@@ -1,0 +1,88 @@
+﻿@model MomPlusAdmin.Models.MotherModel
+
+<script src="~/Visual/Content/Template/Scripts/ShowAndHide.js"></script>
+@using (Html.BeginForm("getMotherProfile", "MotherProfile", new { id = Model.id }, FormMethod.Post))
+{
+    @Html.ValidationSummary(true,message: "Snap. something went wrong.")
+    @Html.HiddenFor(model => model.motherUsername)       
+    @Html.HiddenFor(model => model.motherPassword)
+    <div class="well  well-sm" style="background-color: White; display: inline-block;">
+        <div style="display: inline-block;" class="col-md-6">
+            <label>
+                First Name:</label>
+            @Html.TextBoxFor(model => model.MotherFName, new { @class = "form-control", @id = "r_fname", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.MotherFName)
+        </div>
+        <div style="display: inline-block;" class="col-md-6">
+            <label>
+                Last Name:</label>
+            @Html.TextBoxFor(model => model.MotherLname, new { @class = "form-control", @id = "r_lname", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.MotherLname)
+        </div>
+        <div style="display: inline-block;" class="col-md-6">
+            <label>
+                Address:</label>
+            @Html.TextBoxFor(model => model.MotherAddress, new { @class = "form-control", @id = "r_address", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.MotherAddress)
+        </div>
+        <div style="display: inline-block;" class="col-md-6">
+            <label>
+                Contact Number:</label>
+            @Html.TextBoxFor(model => model.MotherCnum, new { @class = "form-control", @id = "r_cnum", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.MotherCnum)
+        </div>
+        <div style="display: inline-block;" class="col-md-6">
+            <label>
+                Age:</label>
+            @Html.TextBoxFor(model => model.MotherAge, new { @class = "form-control", @id = "r_bdate", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.MotherAge)
+        </div>
+        <div style="display: inline-block;" class="col-md-6">
+            <label>
+                Birth Of Date:</label>
+            @Html.TextBoxFor(model => model.MotherBdate, new { @class = "form-control", @id = "r_bdate", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.MotherBdate)
+        </div>
+        <div style="padding: 10px 0px 0px 10px; display: inline-block;">
+            <input type="submit" value="Submit" name="update" class="btn btn-xs btn-default"
+                id="updateBtn" style="display: none;" />
+            <a href="#" class="btn btn-xs btn-default" id="editBtn">Edit</a> 
+            <a href="#" class="btn btn-xs btn-default"
+                id="cancelBtn" style="display: none;">Cancel</a>
+        </div>
+    </div> 
+    
+    <div class="well well-sm" style="background-color: White; margin-top: 5px;">
+        <div>
+            <label>
+                Last Menstrual Period:</label>
+            <div class="input-group">
+                @Html.TextBoxFor(model => model.LMP, new { @class = "form-control", @id = "en_lmp", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.LMP)
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil" style="width: 30px;"
+                    id="LMPid"></i>
+                    <div style="display: inline-block;">
+                        <i>
+                            <input type="image" src="/Visual/Images/check.png" style="width: 15px; display: none;"
+                                id="checkID">
+                        </i>
+                    </div>
+                    <div style="position: relative; display: inline-block;">
+                        <i>
+                            <img src="/Visual/Images/cancel.png" style="width: 17px; display: none; padding: 0 0 5px 3px;"
+                                id="cancelID" />
+                        </i>
+                    </div>
+                </span>
+            </div>
+            <label>
+                Estimated Date Conceive:</label>
+            @Html.TextBoxFor(model => model.EDC, new { @class = "form-control", @readonly = "readonly" })
+            <label>Date Registered:</label>
+            @Html.TextBoxFor(model => model.DateRegistered, new { @class = "form-control", @id = "en_lmp", @readonly = "readonly" })
+        </div>
+        <br />
+    </div>
+
+}
+

@@ -1,0 +1,27 @@
+﻿@model MomPlusAdmin.Models.MotherModel
+@{
+    ViewBag.Title = "MotherRegistration";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+<script src="/Visual/Content/Template/Scripts/jquery-1.11.0.min.js"></script>
+<script src="/Visual/Scripts/bootstrap.min.js"></script>
+
+<script src="/Visual/Content/Template/Scripts/Loader.js"></script>
+ <link rel="stylesheet" href="/Visual/Content/Template/CSS/LoaderCSS.css">    
+<div class="se-pre-con"></div>
+
+        @if (ViewBag.newEntry == null)
+        {
+            @RenderPage("~/Views/ManagePeople/ToRegisterMother.cshtml");
+        }
+        else
+        {
+             @RenderPage("~/Views/ManagePeople/MotherIsRegistered.cshtml");
+        }
+
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>

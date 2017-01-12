@@ -1,0 +1,108 @@
+﻿@model MomPlusAdmin.Models.MotherModel
+<div id="services">
+    <!-- appointment section -->
+    <article class="section">
+			<div class="section-image">
+				<div class="container">
+					<!-- appointment-area -->
+					<div class="appointment-area">
+						<div class="row">
+							<div class="col-sm-10 col-md-6">
+								<!-- appointment-box -->
+								
+                                <div class="appointment-box">
+									      <div class="upper-section">
+                                                <header class="heading animated fadeInUp in" data-animation="fadeInUp" data-delay="0">
+                                                <h3>Create New Mother Account</h3>
+                                                </header>
+                                           </div>
+                                   
+									<div class="text">
+                                    	<div class="appointment-form">
+                                            <ul class="row">
+
+                                          @using (Html.BeginForm())
+                                          {
+                                              if (TempData["unSuccessful"] != null)
+                                              {
+                                              <div class="alert alert-danger">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <strong>Snap.</strong> something went wrong.
+                                               </div>  
+                                              }
+                                                <li class="col-sm-12">
+													<label>@Html.LabelFor(model => model.MotherFName)</label>
+                                                     <div data-toggle="popover" data-placement="right"
+                                                        data-content="Fill out this field,3 - 15 characters, string only.">    
+                                                     </div>
+                                                   
+                                                           @Html.TextBoxFor(model => model.MotherFName, new { @class = "form-control" })
+                                                           @Html.ValidationMessageFor(model => model.MotherFName)
+                                                 </li>
+
+                                                 <li class="col-sm-12">
+                                                       <label>@Html.LabelFor(model => model.MotherLname)</label>
+                                                        @Html.TextBoxFor(model => model.MotherLname, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.MotherLname)
+                                                 </li>
+
+                                                <li class="col-sm-12">
+                                                       <label>@Html.LabelFor(model => model.MotherAddress)</label>
+                                                       <div data-toggle="popover" data-placement="right"
+                                                        data-content="Fill out this field,3 - 15 characters, string only.">    
+                                                </div>
+                                                        @Html.TextBoxFor(model => model.MotherAddress, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.MotherAddress)
+                                                 </li> 
+                                                 <li class="col-sm-12">      
+                                                       <label>@Html.LabelFor(model => model.MotherCnum)</label>
+                                                        @Html.TextBoxFor(model => model.MotherCnum, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.MotherCnum)
+                                                        <h5 style = "color:Red;">
+                                                        @ViewBag.cnumExist 
+                                                        </h5>    
+                                                  </li>
+                                                 <li class="col-sm-12">
+                                                     <label>@Html.LabelFor(model => model.MotherBdate)</label>
+                                                        @Html.TextBoxFor(model => model.MotherBdate, new { @type = "date", @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.MotherBdate)
+                                                        <h5 style = "color:Red;">@ViewBag.notValidBday</h5>
+                                                </li>
+                                              <li class="col-sm-12">        
+                                                      <label>@Html.LabelFor(model => model.motherUsername)</label>
+                                                        @Html.TextBoxFor(model => model.motherUsername, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.motherUsername)
+                                                        <h5 style = "color:Red;">
+                                                        @ViewBag.usernameExist
+                                                        </h5>          
+                                              </li>
+                                              <li class="col-sm-12">  
+                                                     <label>@Html.LabelFor(model => model.motherPassword)</label>
+                                                        @Html.TextBoxFor(model => model.motherPassword, new { @class = "form-control", @type = "password" })
+                                                        @Html.ValidationMessageFor(model => model.motherPassword)
+                                              </li> 
+                                              <li class="col-sm-12">
+                                                    <label>@Html.LabelFor(model => model.LMP)</label>
+                                                        @Html.TextBoxFor(model => model.LMP, new { @type = "date", @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.LMP)
+                                               </li>        
+                                                        @Html.LabelFor(model => model.DateRegistered)
+                                                        @Html.TextBoxFor(model => model.DateRegistered, new { @Value = @DateTime.Now.ToLocalTime(), @class = "form-control", @readonly = "readonly" })
+            
+                                                <li>
+											   	<input type="submit" class="btn btn-primary" value="Submit" /> 
+                                                </li>
+                                          }
+                                            </ul>
+                                        </div>									
+                                    </div>
+								</div>
+                               </div>
+                             
+							<div class="col-sm-6 appointment-box-snap"> <img src="~/Visual/Content/Template/Images/img-1.png" alt="image doctor"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+</div>

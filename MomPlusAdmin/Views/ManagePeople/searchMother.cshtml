@@ -1,0 +1,105 @@
+﻿@model IEnumerable<MomPlusAdmin.Domain.Entity.Mother>
+
+@{
+    ViewBag.Title = "searchMother";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+<div class="se-pre-con"></div>
+<div id="adminlist" class="section-image">
+    <div class="container">
+        <!-- upper-section -->
+ <div class="upper-section">
+            <header style= "margin-top:10px;">
+						 <div style = "display:inline-block;">
+                            <a href="@Url.Action("MotherList", "ManagePeople")" class="btn btn-default btn-sm">
+                                <i><img src = "/Visual/Images/back.png" style = "width: 20px;"/></i>
+                                <span>
+                                    <strong>Back to list</strong>
+                                </span>            
+                            </a>
+                       </div>
+           </header>
+        </div>
+        <br />
+
+         <div class="content-section">
+            <div class="row">
+                <div style="display: inline">
+                    <div class="panel panel-success">
+                    <table class="table table-sm" data-animation="fadeInUp" data-delay="0">
+                      <div class="panel-heading"> 
+                      <div style = "display:table-header-group;">
+                            @using (Html.BeginForm("searchMother", "ManagePeople", FormMethod.Get))
+                            {
+                               
+                               @Html.TextBox("SearchString", null, new { @required = "required", @class = "form-control", @placeholder = "Search by name", @style = "margin-left:20px;margin-top:10px;" })  
+                            }
+                                                
+                     </div>
+                     <br />
+                     <tr>
+                            <th>@Html.ActionLink("First Name", "MotherList", new { sortOrder = ViewBag.FNameSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Last Name", "MotherList", new { sortOrder = ViewBag.LNameSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Address", "MotherList", new { sortOrder = ViewBag.AddressSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Contact No.", "MotherList", new { sortOrder = ViewBag.ContactNumSortParm })
+                            </th>
+                            <th>@Html.ActionLink("LMP", "MotherList", new { sortOrder = ViewBag.FnameSortParm })
+                            </th>
+                            <th>@Html.ActionLink("EDC", "MotherList", new { sortOrder = ViewBag.FnameSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Username", "MotherList", new { sortOrder = ViewBag.UsernameSortParm })
+                            </th>
+                            <th>@Html.ActionLink("Password", "MotherList", new { sortOrder = ViewBag.PasswordSortParm })
+                            </th>
+
+                           
+                            <th>
+                            </th>
+                        </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.first_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.last_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.contact_num)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EDC)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LMP)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.password)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("getMotherProfile", "MotherProfile", new { id = item.mother_id })">
+                            <img src = "/Visual/Images/iconProfile.png" style = "width: 30px;"/>
+     
+                            </a>
+                        </td>
+                    </tr>
+                }
+               </table>
+               </div>
+
+             </div>
+           </div>
+        </div>
+    </div>
+</div>

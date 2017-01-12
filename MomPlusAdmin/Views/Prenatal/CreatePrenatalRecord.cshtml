@@ -1,0 +1,167 @@
+﻿@model MomPlusAdmin.Models.PrenatalModel
+@{
+    ViewBag.Title = "CreatePrenatalRecord";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+
+    var motherID = ViewBag.motherID;
+}
+<script src="~/Visual/Content/Template/Scripts/ShowAndHide.js"></script>
+
+
+<div>
+    <!-- appointment section -->
+    <article class="section">
+			<div class="section-image">
+				<div class="container">
+					<!-- appointment-area -->
+					<div class="appointment-area">
+						<div class="row">
+							<div class="col-sm-10 col-md-6">
+								<!-- appointment-box -->
+								
+                                <div class="appointment-box">
+									      <div class="upper-section">
+                                                <header class="heading animated fadeInUp in" data-animation="fadeInUp" data-delay="0">
+                                                <h3>Add New Prenatal Record</h3>
+                                                </header>
+                                           </div>
+                                   
+									<div class="text">
+                                    	<div class="appointment-form" >
+                                            <ul class="row" id="prenatalId">
+									       @using (Html.BeginForm("CreatePrenatalRecord", "Prenatal", new { id = motherID }, FormMethod.Post))
+                                            {
+                                              
+                                             if (TempData["unSuccessful"] != null)
+                                              {
+                                              <div class="alert alert-danger">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                @Html.ValidationSummary(true, message: "Snap! something went wrong.")
+                                               </div>  
+                                              }
+                                                   
+                                                 <div class="form-inline">
+                                                    <div class="form-group">
+                                                       <li class="col-sm-12">
+                                                         <label for="email">@Html.LabelFor(model => model.Toxiod)</label>
+                                                         @Html.TextBoxFor(model => model.Toxiod, new { @type = "date", @class = "form-control", id = "toxiodID" })
+                                                         @Html.ValidationMessageFor(model => model.Toxiod)
+                                                         </li>
+                                                    </div>
+
+                                                    <div class="form-group" style = "padding-left: 20px;">
+                                                       <li class="col-sm-12">
+                                                        <label>@Html.LabelFor(model => model.TetaType)</label>
+                                                         @Html.DropDownListFor(model => model.TetaType, new List<SelectListItem>
+                                                        {
+                                                                new SelectListItem() {Text = "TT1", Value="TT1"},
+                                                                new SelectListItem() {Text = "TT2", Value="TT2"},
+                                                                new SelectListItem() {Text = "TT3", Value="TT2"},
+                                                                new SelectListItem() {Text = "TT4", Value="TT4"},
+                                                                new SelectListItem() {Text = "TT5", Value="TT5"},
+                                
+                                                        }, new { @class = "form-control" })
+                                                      </li>      
+                                                    </div>
+                                                </div>
+                                                 <div class="col-sm-12">
+                                                        <label>@Html.LabelFor(model => model.DateGivenVitA)</label>
+                                                               @Html.TextBoxFor(model => model.DateGivenVitA, new { @type = "date", @class = "form-control", id = "dategivenvitA" })
+                                                                @Html.ValidationMessageFor(model => model.DateGivenVitA)
+                                                   </div>
+                                                <div class="form-group">
+                                                            <li class="col-sm-12">
+                                                              <label>@Html.LabelFor(model => model.DateIronWasGiven)</label>
+                                                                     @Html.TextBoxFor(model => model.DateIronWasGiven, new { @type = "date", @class = "form-control", id = "dateiron" })
+                                                                     @Html.ValidationMessageFor(model => model.DateIronWasGiven) 
+                                                            </li>
+                                                    
+                                                  </div>
+                                                  <div class="form-group">
+                                                            <li class="col-sm-12">
+                                                              <label>@Html.LabelFor(model => model.NoIronWasGiven)</label>
+                                                                     @Html.TextBoxFor(model => model.NoIronWasGiven, new { @class = "form-control" })
+                                                                     @Html.ValidationMessageFor(model => model.NoIronWasGiven) 
+                                                            </li>
+                                                    
+                                                  </div>         
+                    
+                                             <div class="col-sm-12">  
+                                                                <label>@Html.LabelFor(model => model.RiskCodeDetected)</label>
+                                                                       @Html.TextBoxFor(model => model.RiskCodeDetected, new { @type = "date", @class = "form-control" })
+                                                                       @Html.ValidationMessageFor(model => model.RiskCodeDetected)
+                                                      </div>
+                                                      <div class="col-sm-12"> 
+                                                        <label>@Html.LabelFor(model => model.DateTerminated)</label>
+                                                               @Html.TextBoxFor(model => model.DateTerminated, new { @type = "date", @class = "form-control" })
+                                                               @Html.ValidationMessageFor(model => model.DateTerminated)
+                                                      </div> 
+                                                      <div class="col-sm-12"> 
+                                                        <label>@Html.LabelFor(model => model.OutCome)</label>
+                                                               @Html.TextBoxFor(model => model.OutCome, new { @class = "form-control" })
+                                                               @Html.ValidationMessageFor(model => model.OutCome)
+                                                      </div>      
+                                                      <div class="col-sm-12"> 
+                                                             <label>@Html.LabelFor(model => model.BirthWeight)</label>
+                                                             @Html.TextBoxFor(model => model.BirthWeight, new { @class = "form-control" })
+                                                             @Html.ValidationMessageFor(model => model.BirthWeight)
+                                                      </div>
+                                                      <div class="col-sm-12"> 
+                                                             <label> @Html.LabelFor(model => model.PlaceOfDelivery)</label>
+                                                             @Html.TextBoxFor(model => model.PlaceOfDelivery, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.PlaceOfDelivery)
+                                                       </div> 
+                                                       
+                                                        <div class="col-sm-12"> 
+                                                             <label>@Html.LabelFor(model => model.AttendedB)</label>
+                                                             @Html.TextBoxFor(model => model.AttendedB, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.AttendedB)
+                                                        </div>
+                                                        <div class="col-sm-12"> 
+                                                             <label>@Html.LabelFor(model => model.Remarks)</label>
+                                                              @Html.TextBoxFor(model => model.Remarks, new { @class = "form-control" })
+                                                              @Html.ValidationMessageFor(model => model.Remarks)
+                                                        </div>
+                                                      
+                                                    <div class="form-inline">
+                                                        <div class="form-group">
+                                                            <li class="col-sm-12">
+                                                               <label>@Html.LabelFor(model => model.Trimester)</label>
+                                                              @Html.TextBoxFor(model => model.Trimester, new { @type = "date", @class = "form-control" })
+                                                           </li>
+                                                       </div>
+
+                                                       <div class="form-group" style = "padding-left: 35px;">
+                                                         <li class="col-sm-12">
+                                                            <label>@Html.LabelFor(model => model.TrimesterNo)</label>
+                                                            @Html.DropDownListFor(model => model.TrimesterNo, new List<SelectListItem>
+                                                        {
+                                                                new SelectListItem() {Text = "First Trimester", Value="First Trimester"},
+                                                                new SelectListItem() {Text = "Second Trimester", Value="Second Trimester"},
+                                                                new SelectListItem() {Text = "Third Trimester", Value="Third Trimester"},
+                                                               
+                                
+                                                        }, new { @class = "form-control" })
+                                                        </li>
+                                                       </div>
+                                                      <div style = "padding-left: 30px;"> @Html.ValidationMessageFor(model => model.Trimester)</div> 
+                                                  </div>
+                                                 
+                                                    <div style = "float:left; margin-right:20px;">
+                                                        <input type="submit" class="btn btn-primary" value="Submit" id = "submitPrenatal" />
+                                                    </div>
+                                            }
+                                             </ul>
+                                              
+                                        </div>									
+                                    </div>
+								</div>
+                               </div>
+                             
+							<div class="col-sm-6 appointment-box-snap"> <img src="~/Visual/Content/Template/Images/img-1.png" alt="image doctor"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+</div>

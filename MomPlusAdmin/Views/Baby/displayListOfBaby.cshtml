@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MomPlusAdmin.Domain.Entity.BabyEntity>
+<style>
+    .table
+    {
+        border: no border;
+    }
+</style>
+<div style="display: inline-block; margin-top: 20px;" class="col-md-6">
+    <img src="/Visual/Images/Male-48.png" style="width: 40px;">
+     @foreach (var item in Model)
+     {
+    <div>
+       
+            @Html.HiddenFor(modelItem => item.mother_id) 
+            
+            @if (item.gender.Equals("Male"))
+            { 
+             <a href="@Url.Action("BabyProfile", "Baby", new { id = item.baby_id })">
+            
+                <font>@Html.DisplayFor(modelItem => item.first_name)
+                @Html.DisplayFor(modelItem => item.last_name)</font>
+            </a>
+                    
+                            
+            }
+        
+    </div>
+     }
+</div>
+<div style="display: inline-block; margin-top: 20px;" class="col-md-6">
+    <img src="/Visual/Images/Female-50.png" style="width: 40px;"> 
+    @foreach (var item in Model)
+    {
+    <div>
+        
+            @Html.HiddenFor(modelItem => item.mother_id) 
+            
+            @if (item.gender.Equals("Female"))
+            { 
+            <a href="@Url.Action("BabyProfile", "Baby", new { id = item.baby_id })">
+            
+                <font>@Html.DisplayFor(modelItem => item.first_name)
+                @Html.DisplayFor(modelItem => item.last_name)</font>
+            </a>
+                            
+            }
+        
+    </div>
+     }
+</div>

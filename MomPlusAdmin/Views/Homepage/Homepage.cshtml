@@ -1,0 +1,74 @@
+﻿@model MomPlusAdmin.Models.LoginModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+<script src="/Visual/Content/Template/Scripts/jquery-1.11.0.min.js"></script>
+<script src="/Visual/Content/Template/Scripts/Loader.js"></script>
+<link rel="stylesheet" href="/Visual/Content/Template/CSS/LoaderCSS.css">
+<div class="se-pre-con">
+</div>
+<div class="fullscreen-slider owl-carousel owl-theme" style="display: block; opacity: 1;">
+    <div class="owl-item" style="width: 1660px;" id="display">
+        <div class="item">
+            <div class="sliderimg" style="background-image: url(/Visual/Content/Template/Images/tempbg2.jpg);
+                background-size: cover;">
+            </div>
+            <div class="banner-content-outer">
+                <div class="banner-content-area">
+                    <div class="banner-content-inner">
+                        <div class="banner-content">
+                            <div class="iconic-large">
+                                <img src="/Visual/Images/logo.png" alt="healthline" style="width: 200px;"></div>
+                            <h2>
+                                Medical Services</h2>
+                            <ul class="banner-ico-list">
+                                <li>
+                                    <div class="iconic color-primary">
+                                        <i>
+                                            <img src="/Visual/Images/Pregnant-48.png" /></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="iconic color-primary">
+                                        <i>
+                                            <img src="/Visual/Images/news-48.png" /></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="iconic color-primary">
+                                        <i>
+                                            <img src="/Visual/Images/Syringe-48.png" /></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="iconic color-primary">
+                                        <i>
+                                            <img src="/Visual/Images/pp.png" /></i>
+                                    </div>
+                                </li>
+                            </ul>
+                            <p class="visible-med">
+                                Through Mom+, Mother can able to monitor her Prenatal, Postpartum and Immunization
+                                records, she will also be notified about the clinic activities.<br />
+                                Admin, can monitor medicines and be notified when any of the item from inventory
+                                has less than 5 counts.
+                            </p>
+                        </div>
+                        <!-- /banner-content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<article class="section">			<div class="container">				<!-- upper-section -->				<div class="upper-section">					<header class="heading animated fadeInUp in" data-animation="fadeInUp" data-delay="0">						<h2>Clinic Activities</h2>						<p>This shows all activities and number of participants.</p>					</header>				</div>			</div>
+             <div class="panel panel-success">
+                <div class="panel-heading">
+                    Participants of each activities
+                </div>
+                <div class="panel-body">
+                    @{Html.RenderAction("EventParticipants", "Homepage");}
+                </div>
+        </div>
+ </article>
